@@ -9,6 +9,9 @@ package kaiju
 import im "../deps/odin-imgui"
 import "core:fmt"
 
+SCREEN_WIDTH  :: 1920
+SCREEN_HEIGHT :: 1080
+
 
 main :: proc() {
   im.CHECKVERSION()
@@ -25,9 +28,9 @@ main :: proc() {
   tex_w, tex_h: i32
   im.FontAtlas_GetTexDataAsRGBA32(io.Fonts, &tex_pixels, &tex_w, &tex_h)
 
-  for i in 0..<10000000 {
+  for i in 0..<1000 {
     fmt.printf("NewFrame(): {}\n", i)
-    io.DisplaySize = {8000, 8000}
+    io.DisplaySize = {SCREEN_WIDTH, SCREEN_HEIGHT}
     io.DeltaTime = 1.0/60.0
     im.NewFrame()
 
