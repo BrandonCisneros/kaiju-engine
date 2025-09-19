@@ -1,45 +1,22 @@
 package kaiju
 
-//************************************************************//
-// Author: Brandon Cisneros
-// Date: 09/19/2025
-//************************************************************//
+//--- IMGUI Modules
+import im      "../deps/odin-imgui"
+import im_sdl  "../deps/odin-imgui/imgui_impl_sdl3"
+import im_dx12 "../deps/odin-imgui/imgui_impl_dx12"
 
-//import im "deps:odin-imgui"
-import im "../deps/odin-imgui"
-import "core:fmt"
+//--- Vendor Modules
+import sdl  "vendor:sdl3"
+import dx12 "vendor:directx/d3d12"
+import dxgi "vendor:directx/dxgi"
 
-SCREEN_WIDTH  :: 1920
-SCREEN_HEIGHT :: 1080
+//--- Global Constants
+
+//--- Global Mutables
+
 
 
 main :: proc() {
-  im.CHECKVERSION()
-  im.CreateContext()
-  defer {
-    fmt.println("DestroyContext()")
-    im.DestroyContext()
-  }
-
-  io := im.GetIO()
-
-  //Build atlas
-  tex_pixels: ^u8
-  tex_w, tex_h: i32
-  im.FontAtlas_GetTexDataAsRGBA32(io.Fonts, &tex_pixels, &tex_w, &tex_h)
-
-  for i in 0..<1000 {
-    fmt.printf("NewFrame(): {}\n", i)
-    io.DisplaySize = {SCREEN_WIDTH, SCREEN_HEIGHT}
-    io.DeltaTime = 1.0/60.0
-    im.NewFrame()
-
-    @(static) f: f32 = 0.0
-    im.Text("Hello World!\n")
-    im.SliderFloat("float\n", &f, 0, 1)
-    im.Text("Application average %.3f ms/frame (%.1f FPS)\n", 1000.0 / io.Framerate, io.Framerate)
-    im.ShowDemoWindow()
-
-    im.Render()
-  }
+  im.GetCurrentWindow()
+  im_sdl.InitForD3D()
 }

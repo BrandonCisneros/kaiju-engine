@@ -5,6 +5,6 @@
   "enable_snippets": true,
   "checker_args": "-vet -strict-style",
   "collections": [
-    {"name": "deps", "path": "./deps" }
+    {"name": "deps", "path": "/deps/" }
   ]
 }
