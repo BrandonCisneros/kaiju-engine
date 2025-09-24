@@ -4,7 +4,7 @@ package kaiju
 //import "core:debug/pe"
 // Core/Base Modules
 import kaiju "engine"
-import "core:fmt"
+//import "core:fmt"
 import "core:log"
 
 
@@ -32,7 +32,9 @@ main :: proc() {
   context.logger = log.create_console_logger()
   defer log.destroy_console_logger(context.logger)
 
-  //--- Telemetry, logging & debug
+  //--- Telemetry
+  welcome_message := "Welcome to Kaiju"
+  log.log(.Info,welcome_message)
 
 
 
@@ -52,6 +54,8 @@ main :: proc() {
   assert(main_window != nil)
   defer sdl.DestroyWindow(main_window)
 
+  kaiju.engine()
+
   main_loop: for {
     //process events
     sdl_ev: sdl.Event
@@ -62,8 +66,7 @@ main :: proc() {
       }
     }
 
-    fmt.println("Hello World!")
-    kaiju.engine()
+    
   }
 
  
