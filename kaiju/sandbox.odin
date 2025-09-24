@@ -3,6 +3,7 @@ package kaiju
 //import "core:sys/windows"
 //import "core:debug/pe"
 // Core/Base Modules
+import kaiju "engine"
 import "core:fmt"
 import "core:log"
 
@@ -60,6 +61,9 @@ main :: proc() {
           break main_loop
       }
     }
+
+    fmt.println("Hello World!")
+    kaiju.engine()
   }
 
  
